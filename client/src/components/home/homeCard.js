@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {styles} from '../../public/styleSheets/styleHomeCard';
 import {Col, Row, Grid} from 'react-native-easy-grid';
+import Test from '../user/test';
 
 export default class HomeCard extends React.Component {
   render() {
@@ -24,6 +25,7 @@ export default class HomeCard extends React.Component {
                       source={require('../../public/images/vu.jpg')}
                       style={styles.imgCard}
                     />
+                    <Test/>
                   </View>
                   <View style={styles.viewDetail}>
                     <Text style={styles.txtName}> Title </Text>

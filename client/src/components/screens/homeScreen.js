@@ -3,6 +3,7 @@ import HomeCard from '../home/homeCard';
 import {createStackNavigator} from '@react-navigation/stack';
 import AddDetail from '../home/addDetail';
 
+
 const Stack = createStackNavigator();
 export default function HomeScreen() {
   return (

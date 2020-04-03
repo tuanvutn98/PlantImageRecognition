@@ -7,14 +7,14 @@ export const auth = {
             return false
 
         if (AsyncStorage.getItem('jwt'))
-            return JSON.parse(AsyncStorage.getItem('jwt'))
+            return AsyncStorage.getItem('jwt')
         else
             return false
     },
 
     getAvatar() {
         if (AsyncStorage.getItem('avatar'))
-            return JSON.parse(AsyncStorage.getItem('avatar'))
+            AsyncStorage.getItem('avatar')
         else
             return false
     },
@@ -22,7 +22,7 @@ export const auth = {
         if (typeof window == "undefined")
             return false
         if (AsyncStorage.getItem('name'))
-            return JSON.parse(AsyncStorage.getItem('name'))
+            return AsyncStorage.getItem('name')
         else
             return false
     },

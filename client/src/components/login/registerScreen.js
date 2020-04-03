@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 class Register extends Component{
     state={ 
-        name: 'nguyentuanvu1',
-        email:'a1nguyentuanvu231198@gmail.com',
-        password:'123456',
-        confirmPassword:'123456',
+        name: '',
+        email:'',
+        password:'',
+        confirmPassword:'',
         flag:false
     }
 
@@ -69,6 +69,18 @@ class Register extends Component{
         return(
             <View style={styles.container}>
                 <Text style={styles.header}>SignUp</Text>
+                <View style={styles.inputView} >
+                    <TextInput
+                        id="login"
+                        name="email"
+                        style={styles.inputText}
+                        value={this.state.email}
+                        placeholder="Enter Your First Name"
+                        placeholderTextColor="#36485f"
+                        underlineColorAndroid={'transparent'}
+                        onChangeText={name => this.setState({ name: text })}
+                    />
+                </View>
                 <TextInput
                     style={styles.Textinput}
                     name={"name"}

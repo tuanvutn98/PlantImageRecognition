@@ -29,7 +29,6 @@ class LoginScreen extends React.Component {
       email,
       password
     };
-    console.log(user);
     // Attempt to login
     this.props.login(user);
     this.props.navigation.navigate('Tab')
@@ -39,7 +38,13 @@ class LoginScreen extends React.Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  
+  renderAlert() {
+    if (this.props.error.msg.error)
+      return (
+        <Text>
+          {this.props.error.msg.error}
+        </Text>);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -47,6 +52,7 @@ class LoginScreen extends React.Component {
           source={require('./../../public/images/logo.png')}
           style={styles.imgLogo}
         />
+        {this.renderAlert()}
         <Text style={styles.logo}>PLANT ID</Text>
         <View style={styles.inputView} >
           <TextInput
