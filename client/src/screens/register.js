@@ -12,7 +12,7 @@ import {
 class Register extends Component{
     state={ 
         name: 'nguyentuanvu1',
-        email:'anguyentuanvu231198@gmail.com',
+        email:'a1nguyentuanvu231198@gmail.com',
         password:'123456',
         confirmPassword:'123456',
         flag:false
@@ -30,7 +30,7 @@ class Register extends Component{
             email,
             password
         }
-
+        console.log(user);
         if(this.state.password!==this.state.confirmPassword){
             this.setState({flag:true});
         }

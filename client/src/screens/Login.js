@@ -8,8 +8,8 @@ import { clearErrors } from '../actions/errorActions';
 class Login extends Component {
   state = {
     modal: false,
-    email: 'nguyentuanvu231198@gmail.com',
-    password: '123456',
+    email: '',
+    password: '',
     msg: null
   };
   //định nghĩa các prop
@@ -27,6 +27,7 @@ class Login extends Component {
       email,
       password
     };
+    console.log(user);
     // Attempt to login
     this.props.login(user);
 

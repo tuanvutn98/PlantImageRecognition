@@ -1,56 +1,48 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import {
-    USER_LOADED,
-    USER_LOADING,
-    AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
-} from '../actions/type';
-import { AsyncStorage } from 'react-native';
+    REGISTER_FAIL,
+    LOGIN_SUCCESS_ADMIN
+} from '../config/type';
 
 const initialState = {
-    token: AsyncStorage.getItem('token'),
-    isAuthenticated: null,
-    isLoading: false,
-    user: null
+    isAuthenticated: false,
+    isAuthorized: false,
+    isAuthorizedSubcomment: false
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case USER_LOADING:
-            return {
-                ...state,
-                isLoading: true
-            };
-        case USER_LOADED:
-            return {
-                ...state,
-                isAuthenticated: true,
-                isLoading: false,
-                user: action.payload
-            };
-        case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
-            AsyncStorage.setItem('token', action.payload.token);
             return {
                 ...state,
                 ...action.payload,
-                isAuthenticated: true,
-                isLoading: false
             };
-        case AUTH_ERROR:
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: true
+            };
+        case LOGIN_SUCCESS_ADMIN:
+            return {
+                ...state,
+                isAuthenticatedAdmin: true
+            };
         case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
         case REGISTER_FAIL:
-            AsyncStorage.removeItem('token');
+            AsyncStorage.removeItem('jwt');
+            AsyncStorage.removeItem('avatar');
+            AsyncStorage.removeItem('name');
             return {
                 ...state,
                 token: null,
-                user: null,
                 isAuthenticated: false,
-                isLoading: false
+                isAuthorized: false,
+                isAuthenticatedAdmin: false
             };
         default:
             return state;
