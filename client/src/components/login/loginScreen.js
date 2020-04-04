@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authAction';
 import { clearErrors } from '../../actions/errorActions';
+import LoginGG from './loginWithGoogle';
 class LoginScreen extends React.Component {
    state = {
     modal: false,
@@ -89,6 +90,7 @@ class LoginScreen extends React.Component {
         </TouchableOpacity>
         <Grid style={styles.iconLogin}>
           <Row>
+            <LoginGG/>
             <SocialIcon
               type="google"
               onPress={() =>

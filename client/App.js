@@ -5,7 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './src/components/login/loginScreen';
 import TabScreen from './src/components/navigation/tabNavigation';
-import RegisterScreen from './src/components/login/registerScreen';
+// import RegisterScreen from './src/components/login/registerScreen';
+import RegisterScreen from './src/components/login/googleSignIn';
 import SearchBar from './src/components/search/searchBar';
 const Stack = createStackNavigator();
 

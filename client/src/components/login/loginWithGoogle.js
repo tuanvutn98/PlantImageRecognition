@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
 
 } from 'react-native';
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import {loginSocial} from  '../../actions/authAction';
 class LoginWithGoogle extends Component {
     state = {
@@ -16,15 +17,15 @@ class LoginWithGoogle extends Component {
     }
     signInWithGoogleAsync = async () => {
         try {
-            const result = await Google.logInAsync({
+            const result = await GoogleSignin.configure({
                 androidClientId: '185189707578-c9cj84i6p7cjnhgpglik4nda5f6r45eh.apps.googleusercontent.com',
                 // iosClientId: YOUR_CLIENT_ID_HERE,
                 scopes: ['profile', 'email'],
             });
             console.log(result)
 
-            if (result.type === 'success') {
-                await this.props.loginSocial(result.accessToken);
+            if ('success' === 'success') {
+                await this.props.loginSocial(GoogleSignin.getTokens);
                 //this.props.loginUserWithGG(result.user.id, result.accessToken, this.navigateToMainScreen)
             } else {
                 // return { cancelled: true };
@@ -35,15 +36,6 @@ class LoginWithGoogle extends Component {
             console.log(e)
         }
     }
-    navigateToMainScreen = async (data) => {
-        try {
-            await AsyncStorage.setItem('userID', JSON.stringify(data.userID));
-            await AsyncStorage.setItem('authToken', JSON.stringify(data.token));
-            await this.props.navigation.navigate('tabNavigation');
-        } catch (error) {
-            console.log("Something went wrong", error);
-        }
-    }
     onFailure = (error) => {
         console.log(error);
     };
@@ -51,6 +43,11 @@ class LoginWithGoogle extends Component {
         const accessToken=response.accessToken;
         this.props.loginSocial(accessToken);
     };
+    onLoginPress = async () => {
+        const result = await this.signInWithGoogleAsync()
+        // if there is no result.error or result.cancelled, the user is logged in
+        // do something with the result
+    }
 
     render() {
         return (
@@ -59,7 +56,7 @@ class LoginWithGoogle extends Component {
                                     type='google'
                                 /> */}
                 <Text style={styles.submitButtonText1}> Google </Text>
-                </TouchableOpacity>
+            </TouchableOpacity>
                 
         );
     }
